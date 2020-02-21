@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import React from 'react'
+import ReactDom from 'react-dom'
 
-import App from './components/app';
-import reducers from './reducers';
+import Search_bar from "./components/search_bar";
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+// const App = function () {   //вот эта вроде JS6
+const App = () =>  {     // а вот это уже Es6, разница в импользовании this
+    return (
+        <div>
+            <Search_bar/>
+        </div>
+    );
+};
 
-ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>
-  , document.querySelector('.container'));
+// React.render(App)
+ReactDom.render(<App />, document.querySelector('.container'));
