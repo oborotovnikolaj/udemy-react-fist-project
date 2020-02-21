@@ -1,9 +1,14 @@
-import React from 'react';
+// import React from 'react';
+import React, {Component} from 'react';  //this mean pull variable React.Component and call it Component
 
-const Search_bar = () => {
-    return <input/>;
-};
-// const foo = 5;
-// export default foo; // всегда бы получали foo при import
+// class SearchBar extends React.Component {
+class Search_bar extends Component {
+    render() {
+        return (
+            <div>
+                <input/>
+            </div>)
+    }
+}
 
 export default Search_bar;
