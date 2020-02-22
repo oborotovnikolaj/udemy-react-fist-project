@@ -2,7 +2,7 @@
 import React, {Component} from 'react';  //this mean pull variable React.Component and call it Component
 
 // class SearchBar extends React.Component {
-class Search_bar extends Component {
+class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {term: 'default value'};
@@ -18,4 +18,4 @@ class Search_bar extends Component {
     }
 }
 
-export default Search_bar;
+export default SearchBar;
