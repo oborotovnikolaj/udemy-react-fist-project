@@ -15,7 +15,8 @@ class App extends Component {
         //так как на запрос уходит время, сначала видим 0, и только чуть позже 5
         YTSearch({key: API_KEY, term: 'porno'}, videos => {
             // this.setState({videos : videos})
-            this.setState({videos}) // синтаксический сахар
+            this.setState({videos}); // синтаксический сахар
+            // videos.map(video => console.log(video));
         });
     }
 
