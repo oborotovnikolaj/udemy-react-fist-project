@@ -12,11 +12,17 @@ const API_KEY = 'AIzaSyCwXiIPIN-XuI3WZ0BPYo5J_8zRtnrgLKQ';
 class App extends Component {
     constructor(param) {
         super(param);
-        this.state = {videos: []};
+        this.state = {
+            videos: [],
+            selectedVideo: null
+        };
         //так как на запрос уходит время, сначала видим 0, и только чуть позже 5
         YTSearch({key: API_KEY, term: 'porno'}, videos => {
             // this.setState({videos : videos})
-            this.setState({videos}); // синтаксический сахар
+            this.setState({
+                videos: videos,
+                selectedVideo: videos[0]
+            }); // синтаксический сахар
             // videos.map(video => console.log(video));
         });
     }
@@ -25,8 +31,11 @@ class App extends Component {
         return (
             <div>
                 <SearchBar/>
-                <VideoDetails video={this.state.videos[0]}/>
-                <VideoList videos = {this.state.videos}/>
+                <VideoDetails video={this.state.selectedVideo}/>
+                <VideoList
+                    onVideoSelected={selectedVideo => this.setState({selectedVideo})}
+                    // onVideoSelected={selectedVideo => this.setState({selectedVideo : this.state.videos[0]})}
+                    videos={this.state.videos}/>
             </div>
         );
     };

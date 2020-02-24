@@ -1,10 +1,11 @@
 import React from 'react';
 
-const VideoListItem = ({video}) => { //Еще один сахар, создает const video = props.video
+const VideoListItem = ({video, onVideoSelected}) => { //Еще один сахар, создает const video = props.video
 // const VideoListItem = (props) => { //Еще один сахар, создает const video = props.video
     const imageUrl = video.snippet.thumbnails.default.url;
     return (
-        <li className="list-group-item">
+        //вызываем функцию onVideoSelected, которая есть в App.js вроде
+        <li onClick={() => onVideoSelected(video)} className="list-group-item">
             <div className={"video-list media"}>
                 <div className={"media-left"}>
                     <img className={"media-object"} src={imageUrl}/>

@@ -4,7 +4,10 @@ import VideoListItem from "./video_list_item";
 const VideoList = (props) => {
     const VideoItems = props.videos.map((video) => {
         // передаем проперти video значение video
-        return <VideoListItem key={video.etag} video = {video}/>
+        return <VideoListItem
+            onVideoSelected={props.onVideoSelected}
+            key={video.etag}
+            video = {video}/>
     });
     return (
         <ul className="col-md-4 list-group">
