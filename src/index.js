@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDom from 'react-dom';
 import YTSearch from 'youtube-api-search';
+import _ from "lodash";
 
 import SearchBar from "./components/search_bar";
 import VideoList from "./components/video_list";
@@ -17,7 +18,11 @@ class App extends Component {
             selectedVideo: null
         };
         //так как на запрос уходит время, сначала видим 0, и только чуть позже 5
-        YTSearch({key: API_KEY, term: 'porno'}, videos => {
+        this.videoSearch('porno');
+    }
+
+    videoSearch(term) {
+        YTSearch({key: API_KEY, term: term}, videos => {
             // this.setState({videos : videos})
             this.setState({
                 videos: videos,
@@ -28,9 +33,12 @@ class App extends Component {
     }
 
     render() {
+        //Функция, которя может быть вызвана не чаще чем раз в 300милли сек
+        const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 300);
+
         return (
             <div>
-                <SearchBar/>
+                <SearchBar onSearchTermChange={videoSearch}/>
                 <VideoDetails video={this.state.selectedVideo}/>
                 <VideoList
                     onVideoSelected={selectedVideo => this.setState({selectedVideo})}
